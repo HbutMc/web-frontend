@@ -19,7 +19,7 @@ onMounted(() => {
     <NavBar />
   </header>
 
-  <main>
+  <main class="main">
     <RouterView />
   </main>
 
@@ -28,3 +28,9 @@ onMounted(() => {
   </footer>
 
 </template>
+
+<style>
+.main {
+  min-height: 100vh;
+}
+</style>

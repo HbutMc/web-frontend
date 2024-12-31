@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { computed } from 'vue';
 import useGlobalStore from '@/stores/Global';
+
+import ToggleDark from '@/components/ToggleDark.vue';
 
 const { t } =  useI18n();
 const global = useGlobalStore();
@@ -23,7 +24,7 @@ const navPages = [
 </script>
 
 <template>
-  <div class="flex container gap-4 px-5">
+  <div class="flex container gap-4 px-5 bg-gray-300">
 
     <div v-show="!global.isWide">菜单</div>
 
@@ -37,8 +38,12 @@ const navPages = [
       </div>
     </div>
 
-    <div class="ms-auto">
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    <div v-if="global.isWide" class="ms-auto flex">
+      详细内容列表
+    </div>
+
+    <div v-else class="ms-auto">
+      菜单 <ToggleDark />
     </div>
 
   </div>
@@ -48,6 +53,8 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 .container {
   height: 60px;
   align-items: center;
+  position: fixed;
+  top: 0;
 }
 
 </style>
