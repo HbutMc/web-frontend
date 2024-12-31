@@ -4,5 +4,7 @@ export default {
     home: '主页',
     wiki: '文档站',
     server: '服务器',
+    gallery: '画廊',
+    shame: '耻辱柱',
   }
 }

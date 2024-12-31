@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { switchTheme } from '@/utils/theme';
 
 const useGlobalStore = defineStore('global', {
   state: () => ({
@@ -9,6 +10,11 @@ const useGlobalStore = defineStore('global', {
   actions: {
     toggleDark() {
       this.isDarkMode = !this.isDarkMode;
+      if (this.isDarkMode) {
+        switchTheme('dark')
+      } else {
+        switchTheme('light')
+      }
     },
     toggleLang() {
       this.isEnglish = !this.isEnglish;

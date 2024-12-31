@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import useGlobalStore from '@/stores/Global';
-
 import ToggleDark from '@/components/ToggleDark.vue';
+import ToggleLang from '@/components/ToggleLang.vue';
 
 const { t } =  useI18n();
 const global = useGlobalStore();
 
-const navPages = [
+interface NavPage {
+  path: string,
+  name: string,
+}
+
+const navPages: NavPage[] = [
   {
     path: '/',
     name: t('navbar.home'),
@@ -17,20 +22,29 @@ const navPages = [
     name: t('navbar.wiki'),
   },
   {
-    path: 'server',
+    path: '/server',
     name: t('navbar.server'),
+  },
+  {
+    path: '/gallery',
+    name: t('navbar.gallery'),
+  },
+  {
+    path: '/shame',
+    name: t('navbar.shame'),
   },
 ]
 </script>
 
 <template>
-  <div class="flex container gap-4 px-5 bg-gray-300">
+  <div class="flex container gap-4 px-5 nav-bg-color text-color">
 
-    <div v-show="!global.isWide">菜单</div>
+    <div v-if="!global.isWide">
+    </div>
 
-    <div>湖工大MC社</div>
+    <div class="brand">湖工大MC社</div>
 
-    <div v-show="global.isWide" class="flex gap-3">
+    <div v-if="global.isWide" class="flex gap-3">
       <div v-for="(item, index) in navPages" :key="index">
         <router-link :to="item.path">
           {{ item.name }}
@@ -38,12 +52,12 @@ const navPages = [
       </div>
     </div>
 
-    <div v-if="global.isWide" class="ms-auto flex">
-      详细内容列表
+    <div v-if="global.isWide" class="ms-auto flex gap-3">
+      <ToggleDark />
+      <ToggleLang />
     </div>
 
     <div v-else class="ms-auto">
-      菜单 <ToggleDark />
     </div>
 
   </div>
@@ -53,8 +67,10 @@ const navPages = [
 .container {
   height: 60px;
   align-items: center;
-  position: fixed;
-  top: 0;
+}
+.brand {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 </style>

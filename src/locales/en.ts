@@ -4,5 +4,7 @@ export default {
     home: 'Home',
     wiki: 'Wiki',
     server: 'Server',
+    gallery: 'Gallery',
+    shame: 'Shame Pole',
   }
 }
